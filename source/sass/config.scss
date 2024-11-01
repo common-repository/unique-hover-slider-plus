@@ -1,0 +1,12 @@
+@import "compass/css3/box-sizing";
+@import "compass/css3/transition";
+
+@mixin mobile {  &[max-width~="667px"] { @content; }  }
+@mixin mini {    &[max-width~="800px"] { @content; }  }
+@mixin tablet {  &[max-width~="1024px"] { @content; }  }
+@mixin desktop { &[max-width~="1480px"] { @content; }  }
+
+$uhsp-height-mobile:  400px;
+$uhsp-height-tablet:  600px;
+$uhsp-height-desktop: 650px;
+$uhsp-maxWidth:       1480px;

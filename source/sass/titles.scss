@@ -1,0 +1,158 @@
+.uhsp-slider-wrapper {
+    @for $i from 1 through 5 {
+        &.uhsp-amount-#{$i} {
+            .uhsp-slider-titles {
+                left: calc((100% - #{$uhsp-maxWidth}) / 2);
+
+                .uhsp-hover-bar {
+                    @if $i == 1 { left: 0; }
+                    @if $i == 2 { left: 0; }
+                    @if $i == 3 { left: 33.3333%; }
+                    @if $i == 4 { left: 25%; }
+                    @if $i == 5 { left: 40%; }
+                    width: 100% / $i;
+                }
+
+                @for $child from 1 through 5 {
+                    .uhsp-title:nth-child(#{$child}):hover ~ .uhsp-hover-bar {
+                        left: (100% / $i) * ($child - 1) !important;
+                    }
+                }
+
+                ul.uhsp-title-list {
+                    li.uhsp-title {
+                        width: 100% / $i;
+                    }
+                }
+            }
+        }
+    }
+
+    .uhsp-slider-titles {
+        bottom: 70px;
+        padding: 0 20px;
+        position: absolute;
+        width: $uhsp-maxWidth;
+        z-index: 2;
+
+        .uhsp-hover-bar {
+            @include transition(left .3s ease);
+            box-sizing: border-box;
+            height: 2px;
+            padding: 0 3%;
+            position: absolute;
+            top: -1px;
+            .uhsp-hover-bar-color {
+                height: 2px;
+                width: 100%;
+            }
+        }
+
+        ul.uhsp-title-list {
+            border-top: 1px solid mix(transparent, white, 75%);
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            position: relative;
+
+            li.uhsp-title {
+                cursor: pointer;
+                float: left;
+                line-height: 1;
+                text-align: center;
+
+                h2.uhsp-slide-title {
+                    @include transition(opacity .3s ease);
+                    cursor: pointer;
+                    font-size: 30px;
+                    font-weight: 400;
+                    margin: 5px 0 0;
+                    opacity: 0.3;
+                    padding: 0;
+                }
+
+                .uhsp-slide-subtitle {
+                    @include transition(opacity .3s ease);
+                    color: white;
+                    font-size: 12px;
+                    font-weight: 400;
+                    margin: 8px 0 0;
+                    opacity: 0.3;
+                    width: 100%;
+                }
+
+                &.selected {
+                    h2.uhsp-slide-title {
+                        opacity: 1;
+                    }
+                    .uhsp-slide-subtitle {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+
+    @include desktop {
+        @for $i from 1 through 5 {
+            &.uhsp-amount-#{$i} {
+                .uhsp-slider-titles {
+                    left: 0;
+                }
+            }
+
+            .uhsp-slider-titles {
+                left: 0;
+                width: 100%;
+            }
+        }
+    }
+
+    @include tablet {
+        .uhsp-slider-titles {
+            ul.uhsp-title-list {
+                li.uhsp-title {
+                    h2.uhsp-slide-title {
+                        font-size: 25px;
+                    }
+                }
+            }
+        }
+    }
+
+    @include mobile {
+        @for $i from 1 through 5 {
+            &.uhsp-amount-#{$i} {
+                .uhsp-slider-titles {
+                    ul.uhsp-title-list {
+                        @if $i == 1 { left: 0; }
+                        @if $i == 2 { left: -100%; }
+                        @if $i == 3 { left: -100%; }
+                        @if $i == 4 { left: -200%; }
+                        @if $i == 5 { left: -200%; }
+                        width: 100% * $i;
+                    }
+                }
+            }
+        }
+
+        .uhsp-slider-titles {
+            bottom: 20px;
+            padding: 0;
+
+            .uhsp-hover-bar {
+                display: none;
+            }
+
+            ul.uhsp-title-list {
+                border-top: none;
+
+                li.uhsp-title {
+                    h2.uhsp-slide-title {
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+    }
+}

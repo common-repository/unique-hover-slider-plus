@@ -1,0 +1,82 @@
+.uhsp-slider-wrapper {
+    @for $i from 1 through 5 {
+        &.uhsp-amount-#{$i} {
+            .uhsp-slider-images {
+                @if $i == 1 { left: 0; }
+                @if $i == 2 { left: 0; }
+                @if $i == 3 { left: -100%; }
+                @if $i == 4 { left: -100%; }
+                @if $i == 5 { left: -200%; }
+                width: 100% * $i;
+
+                .uhsp-single-slide {
+                    padding: 0 calc(((100% / #{$i}) - #{$uhsp-maxWidth}) / 2);
+                    width: 100% / $i;
+                }
+            }
+        }
+    }
+
+    .uhsp-slider-images {
+        height: 100%;
+        opacity: 1;
+        overflow: hidden;
+        position: relative;
+        white-space: nowrap;
+        z-index: 1;
+
+        .uhsp-single-slide {
+            @include box-sizing(border-box);
+            background-position: center center;
+            background-size: cover;
+            display: inline-block;
+            float: left;
+            height: 100%;
+            position: relative;
+            white-space: initial;
+
+            img.uhsp-single-image {
+                bottom: 200px;
+                height: 250px;
+                left: calc(50% - 185px);
+                position: absolute;
+                width: 370px;
+                z-index: 1;
+            }
+
+            .ushp-slide-overlay {
+                height: 100%;
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 100%;
+                z-index: 0;
+            }
+        }
+    }
+
+    @include tablet {
+        .uhsp-slider-images {
+            .uhsp-single-slide {
+                img.uhsp-single-image {
+                    height: 220px;
+                    left: calc(50% - 162px);
+                    width: 324px;
+                }
+            }
+        }
+    }
+
+    @include mobile {
+        .uhsp-slider-images {
+            .uhsp-single-slide {
+                img.uhsp-single-image {
+                    bottom: 130px;
+                    height: 105px;
+                    left: calc(50% - 75px);
+                    width: 150px;
+                }
+            }
+        }
+    }
+}
